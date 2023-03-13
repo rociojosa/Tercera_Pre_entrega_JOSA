@@ -1,0 +1,29 @@
+from django.db import models
+
+class Cliente(models.Model):
+
+    nombre = models.CharField(max_length=40)
+    fecha_nacimiento = models.IntegerField(unique=True)
+    alergias = models.CharField(max_length=40)
+
+    def __str__(self):
+        return f"Nombre cliente: {self.nombre}, Alergias: {self.alergias}"
+
+
+class Reservas(models.Model):
+    nombre = models.CharField(max_length=30)
+    numero_reserva = models.IntegerField(unique=True)
+    fecha = models.IntegerField(unique=True)
+    horario = models.IntegerField(unique=True)
+
+def __str__(self):
+        return f"Nombre cliente: {self.nombre}, Número de reserva: {self.numero_reserva}, fecha y horario: {self.fecha} - {self.horario}"
+
+
+class ClientePet(models.Model):
+    nombre = models.CharField(max_length=30)
+    tipo_mascota = models.CharField(max_length=30)
+    nombre_mascota = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"Nombre Cliente Pet: {self.nombre}, Tipo de mascota: {self.tipo_mascota}, Nombre de la mascota: {self.nombre_mascota}"
