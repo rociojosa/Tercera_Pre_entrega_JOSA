@@ -1,0 +1,37 @@
+{% extends "inicio.html" %}
+
+{% block contenido_cambia %}
+
+    <form action="{% url 'Cliente' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Enviar">
+
+    </form>
+    <br><hr>
+    <form action="{%  url 'Busqueda_cliente' %}">
+       {{ form_busqueda.as }}
+       <imput type="submit" value="Buscar">
+
+   </form>
+   <hr><br>
+    {% if clientes%}
+       {% for cliente in clientes %}
+           <p> cliente: {{ cliente.nombre }}</p>
+           <p> alergia: {{ cliente.alergia}}</p>  
+        {%endfor%}
+    {%else%}
+        <h1>No hay clientes en este momento</h1>
+    {%endif%}
+
+{%endblock%}
+
+    <br><hr>
+    <form action="{%  url 'Busqueda_cliente' %}">
+       {{ form_busqueda.as }}
+       <imput type="submit" value="Buscar">
+
+   </form>
+   <hr><br>
+
+   

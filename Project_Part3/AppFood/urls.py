@@ -1,9 +1,11 @@
 from django.urls import path
-from AppFood.views import *
+from AppFood import views
 
 urlpatterns = [
-    path('', inicio, name="AppFoodInicio"),
-    path('cliente', cliente, name= "AppFoodCliente"),
-    path('reservas/<nombre>/<numero_reserva>', crear_reserva, name="AppFoodReservas"),
-    path('clientePet', cliente_pet , name="AppFoodClientePet"),
+    path('', views.inicio, name="Inicio"),
+    path('clientes', views.clientes, name= "Clientes"),
+    path('cliente/<nombre>/<reserva>', views.crear_cliente, name= "ClienteCreado"),
+    path('buscar_cliente', views.busqueda_cliente, name= "Busqueda_cliente"),
+    path('reservas', views.reservas, name="Reservas"),
+    path('clientePet', views.cliente_pet , name="ClientePet"),
 ]

@@ -1,0 +1,14 @@
+{% extends "inicio.html" %}
+
+{% block contenido_cambia %}
+    {% if clientes %}
+        {% for cliente in clientes %}
+            <p>cliente: {{ nombre }}</p>
+
+        {% endfor %}
+    {% else %}
+        <h3>No hay clientes filtrados</h3>
+    {% endif %}
+
+
+{% endblock %}
