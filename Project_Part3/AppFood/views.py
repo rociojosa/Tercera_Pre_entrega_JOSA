@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from AppFood.models import Cliente
 from AppFood.forms import ClienteForm, BusquedaClienteForm
 
@@ -30,7 +30,6 @@ def clientes(request):
               )
             
             cliente_save.save()
-        return redirect(request, "AppFood/clientepet.html")
 
     all_clientes =Cliente.objects.all()
     context = {
@@ -38,7 +37,7 @@ def clientes(request):
         "form": ClienteForm(),
         "form_busqueda": BusquedaClienteForm(),
     }
-    return render(request, "AppFood/cliente.html", context=context)
+    return render(request, "AppFood/cliente.html", {"form": ClienteForm(), "nombre": all_clientes})
 
 
 def crear_cliente(request, nombre, numero_reserva):
@@ -47,7 +46,7 @@ def crear_cliente(request, nombre, numero_reserva):
     context = {
         "nombre": nombre , "reserva": numero_reserva
     }
-    return render(request, "AppFood/save_reserva.html", context)
+    return render(request, "AppFood/save_reserva.html", context=context)
 
 
 def reservas(request):

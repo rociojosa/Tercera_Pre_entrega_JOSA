@@ -1,8 +1,8 @@
-{% extends "inicio.html" %}
+{% extends "AppFood/inicio.html" %}
 
 {% block contenido_cambia %}
 
-    <form action="{% url 'Cliente' %}" method="post">
+    <form action="{% url 'Clientes' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Enviar">
