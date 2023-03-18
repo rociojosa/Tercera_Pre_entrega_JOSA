@@ -1,17 +1,15 @@
 {% extends "AppFood/inicio.html" %}
 
-{% block contenido_cambia %}
+{% block titulo %} Formulario de Clientes {%endblock%}
+
+{% block content %}
+
+<h1>Formulario para registro de clientes</h1>
 
     <form action="{% url 'Clientes' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Enviar">
-
-    </form>
-    <br><hr>
-    <form action="{%  url 'Busqueda_cliente' %}">
-       {{ form_busqueda.as }}
-       <imput type="submit" value="Buscar">
 
    </form>
    <hr><br>
@@ -25,13 +23,3 @@
     {%endif%}
 
 {%endblock%}
-
-    <br><hr>
-    <form action="{%  url 'Busqueda_cliente' %}">
-       {{ form_busqueda.as }}
-       <imput type="submit" value="Buscar">
-
-   </form>
-   <hr><br>
-
-   

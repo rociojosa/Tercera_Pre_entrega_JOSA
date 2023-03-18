@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Bienvenidos a nuestra AppFood</title>
+        <title>{% block titulo %}   {%endblock%}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -18,16 +18,28 @@
         <link href="{%static 'AppFood/css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
+  
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
+                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
                 <a class="navbar-brand" href="{% url 'Clientes' %}">Cliente</a>
                 <a class="navbar-brand" href="{% url 'Reservas' %}">Reservas</a>
                 <a class="navbar-brand" href="{% url 'ClientePet' %}">Cliente Pet</a>
+                <a class="navbar-brand" href="{% url 'Busqueda_cliente' %}">Buscar Cliente</a>
 
                 <a class="btn btn-primary" href="#signup">Sign Up</a>
             </div>
         </nav>
+          <!-- Body-->
+
+          {% block content %}
+
+          {%endblock%}
+  
+      </body>
+      
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
@@ -104,6 +116,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Image Showcases-->
         <section class="showcase">
             <div class="container-fluid p-0">
@@ -245,5 +258,6 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
     </body>
 </html>

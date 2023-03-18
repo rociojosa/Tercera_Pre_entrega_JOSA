@@ -3,7 +3,6 @@ from django.db import models
 class Cliente(models.Model):
 
     nombre = models.CharField(max_length=40)
-    fecha_nacimiento = models.IntegerField()
     alergias = models.CharField(max_length=40)
 
     def __str__(self):
@@ -13,8 +12,8 @@ class Cliente(models.Model):
 class Reservas(models.Model):
     nombre = models.CharField(max_length=30)
     numero_reserva = models.IntegerField(unique=True)
-    fecha = models.IntegerField(unique=True)
-    horario = models.IntegerField(unique=True)
+    fecha = models.DateField(max_length=8)
+    horario = models.TimeField()
 
 def __str__(self):
         return f"Nombre cliente: {self.nombre}, Número de reserva: {self.numero_reserva}, fecha y horario: {self.fecha} - {self.horario}"
