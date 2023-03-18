@@ -6,20 +6,11 @@
 
 <h1>Formulario para registro de clientes</h1>
 
-    <form action="{% url 'Clientes' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Enviar">
+    <form action="{% url 'Clientes' %}" method="post"> 
+        {% csrf_token %}
+        {{ form.as_p }}
 
+        <input type="submit" value="Crear">
    </form>
-   <hr><br>
-    {% if clientes%}
-       {% for cliente in clientes %}
-           <p> cliente: {{ cliente.nombre }}</p>
-           <p> alergia: {{ cliente.alergia}}</p>  
-        {%endfor%}
-    {%else%}
-        <h1>No hay clientes en este momento</h1>
-    {%endif%}
 
-{%endblock%}
+{% endblock %}

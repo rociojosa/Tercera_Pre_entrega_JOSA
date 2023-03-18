@@ -9,12 +9,15 @@ def buscar_cliente(request):
         informacion = mi_formulario.cleaned_data
         clientes_filtrados = Cliente.objects.filter(nombre__icontains=informacion['nombre'])
         context = {
-            "clientes": clientes_filtrados
+            "clientes": clientes_filtrados,
         }
-        return render(request, "AppFood/busqueda_cliente.html", context)
+        return render(request, "AppFood/busqueda_cliente.html", context=context)
     else:
 
-        return render(request, "AppFood/busqueda_cliente.html")
+        mi_formulario =BusquedaClienteForm()
+
+        return render(request,"AppFood/busqueda_cliente.html", {"mi_formulario":mi_formulario})
+
 
 
 def inicio(request):
@@ -23,6 +26,7 @@ def inicio(request):
 def clientes(request):
     if request.method == "POST":
         mi_formulario = ClienteForm(request.POST)
+        print(mi_formulario)
 
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
@@ -33,25 +37,23 @@ def clientes(request):
               )
             
             cliente_save.save()
-
-    all_clientes =Cliente.objects.all()
+    all_clientes = Cliente.objects.all()
     context = {
-        "nombre": all_clientes,
+        "clientes": all_clientes,
         "form": ClienteForm(),
         "form_busqueda": BusquedaClienteForm(),
     }
-    return render(request, "AppFood/cliente.html", context)
+
+    return render(request, "AppFood/cliente.html", context=context)
 
 
-
-
-def crear_cliente(request, nombre, numero_reserva):
-    save_reserva= Cliente( nombre=nombre , reserva=int(numero_reserva))
-    save_reserva.save()
+def crear_cliente(request, nombre, alergias, reserva):
+    cliente_save= Cliente( nombre=nombre , alergia=alergias , reserva=int(reserva))
+    cliente_save.save()
     context = {
-        "nombre": nombre , "reserva": numero_reserva
+        "Nombre": nombre , "Reserva": reserva, "Alergias": alergias
     }
-    return render(request, "AppFood/save_reserva.html", context)
+    return render(request, "AppFood/cliente_save.html", context=context)
 
 
 def reservas(request):
@@ -71,8 +73,7 @@ def reservas(request):
     all_reservas =Reservas.objects.all()
     context = {
         "nombre": all_reservas,
-        "form": ReservaClienteForm(),
-        "form_busqueda": BusquedaClienteForm(),
+        "form_reserva": ReservaClienteForm(),
     }
     return render(request, "AppFood/reservas.html", context)
 
@@ -85,8 +86,8 @@ def cliente_pet(request):
             informacion = mi_formulario.cleaned_data
             clientepet_save = ClientePet(
                 nombre = informacion['nombre'],
-                tipo_mascota = informacion['Tipo de mascota'],
-                nombre_mascota = informacion ['Nombre de la mascota'],
+                tipo_mascota = informacion['tipo_mascota'],
+                nombre_mascota = informacion ['nombre_mascota'],
               )
             
             clientepet_save.save()
@@ -94,7 +95,7 @@ def cliente_pet(request):
     all_clientespet =ClientePet.objects.all()
     context = {
         "nombre": all_clientespet,
-        "form": ClientePetForm(),
+        "mi_formulario": ClientePetForm(),
     }
 
     return render(request, "AppFood/clientepet.html", context=context)

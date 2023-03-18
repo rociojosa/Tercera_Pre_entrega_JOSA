@@ -1,9 +1,8 @@
 {% extends "AppFood/inicio.html" %}
 
-{% block contenido_cambia %}
 
-<form action="{% url 'ClienteCreado' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Enviar">
-</form>
+{% block content %}
+
+    <h3>Su cliente {{ nombre }} ha sido guardado con exito</h3>
+
+{% endblock %}

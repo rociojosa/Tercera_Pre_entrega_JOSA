@@ -9,18 +9,9 @@
     <form action="{% url 'Reservas' %}" method="post">
     {% csrf_token %}
     
-    {{ form.as_p }}
+    {{ form_reserva.as_p }}
 
     <input type="submit" value="Enviar">
     </form>
 <br><hr>
-
-{% if reservas%}
-{% for reserva in reservas %}
-    <p> cliente: {{ cliente.nombre }}</p>
-    <p> reserva: {{ cliente.reserva}}</p> 
- {%endfor%}
-{%else%}
- <h1>No hay reservas registradas en este momento</h1>
-{%endif%}
-{%endblock%}
+{% endblock %}
