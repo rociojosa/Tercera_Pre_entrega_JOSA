@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from AppFood.models import Cliente, Reservas, ClientePet
 from AppFood.forms import ClienteForm, BusquedaClienteForm, ReservaClienteForm, ClientePetForm
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 
 
 def buscar_cliente(request):
@@ -99,3 +105,25 @@ def cliente_pet(request):
     }
 
     return render(request, "AppFood/clientepet.html", context=context)
+
+class ClienteList(ListView):
+    model = Cliente
+    template_name = "AppFood/cliente_list.html"
+
+class ClienteDetalle(DetailView):
+    model = Cliente
+    template_name = "AppFood/cliente_detalle.html"
+
+class ClienteCreacion(CreateView):
+    model = Cliente
+    sucess_url = "/AppFood/clientes/list"
+    fields = ['nombre', 'reserva']
+
+class ClienteUpdate(UpdateView):
+    model = Cliente
+    sucess_url = "/AppFood/clientes/list"
+    fields = ['nombre', 'reserva']
+
+class ClienteDelete(DeleteView):
+    model = Cliente
+    sucess_url = "/AppFood/clientes/list"
